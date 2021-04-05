@@ -1,0 +1,70 @@
+import java.io.DataOutput;
+import java.lang.reflect.Constructor;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.util.Scanner;
+
+public class HangThucPham {
+
+    static Scanner sc = new Scanner(System.in);
+    private String maHang;
+    private String tenHang;
+    private Integer donGia;
+    private Date NSX; 
+    private Date NHH;
+
+    
+
+
+    public Date getNHH() {
+        return NHH;
+    }
+    public String getMaHang() {
+        return maHang;
+    }
+    
+    public String getTenHang() {
+        return tenHang;
+    }
+    
+    public Date getNSX() {
+        return NSX;
+    }
+    public Integer getDonGia() {
+        return donGia;
+    }
+
+
+    public void setTenHang(String tenHang) {
+        do {
+            if(tenHang == null || tenHang == "" || tenHang == " "){
+                System.out.print("khong de rong tenhang, nhap lai: ");
+                tenHang = sc.nextLine();
+            }
+            
+        } while (tenHang == null  || tenHang == "" || tenHang == " ");
+        this.tenHang = tenHang;
+    }
+    public void setMaHang(String maHang) {
+        this.maHang = maHang;
+    }
+    public void setDonGia(Integer donGia) {
+        do {
+            if (donGia > 0) {
+                System.out.print("don gia phia LON hon 0, nhap lai:");
+                donGia = Integer.parseInt(sc.nextLine());
+            }
+        } while (donGia > 0);
+        this.donGia = donGia;
+    }
+    public void setNSX(Date nSX) {
+    //    if(nSX < java.util.Date.UTC(2021, 04, 03, 0, 0, 0))
+        this.NSX = nSX;
+    }
+    public void setNHH(Date nHH) {
+        this.NHH = nHH;
+    } 
+
+
+
+}
