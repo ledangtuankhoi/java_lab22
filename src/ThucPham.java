@@ -1,12 +1,12 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.NumberFormat;
-import java.text.ParseException;
+// import java.text.NumberFormat;
+// import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+// import java.util.Locale;
 import java.util.Scanner;
 
 public class ThucPham {
@@ -92,23 +92,7 @@ public class ThucPham {
         this.hSD = hSD;
     }// -------------------end getter and setter-----------------------
 
-    @Override
-    // khởi tạo phương thức toString
-    public String toString() {
-        // sử dung phương thức Locale để biến đổi theo tiền tệ việt nam
-        Locale localeVN = new Locale("vi", "VN");
-        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
-        String str = numberFormat.format(donGia);
-        // sử dụng phương thức SimpleDateFormat để biến đổi ngày tháng năm theo dạng
-        // "dd/MM/yyyy"
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd - MM - yyyy");
-        String str1 = simpleDateFormat.format(nSX);
-        String str2 = simpleDateFormat.format(hSD);
-        return "Thông tin về thực phẩm: \n" + "Mã hàng : " + maHang + "\nTên hàng : '" + tenHang + "\nĐơn giá : " + str
-                + "\nNgày sản xuất : " + str1 + "\nHạn sử dụng : " + str2;
 
-        // return "&-12s";
-    }
 
     // Khởi tạo phương thức để nhập năm tháng ngày sản xuất
     public void xylydate(int year, int month, int day) {
@@ -170,8 +154,8 @@ public class ThucPham {
     public String kiemTraHSD() {
         Date today = new Date();
         today.getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd - MM - yyyy");
-        String st = simpleDateFormat.format(today);
+        // SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd - MM - yyyy");
+        // String st = simpleDateFormat.format(today);
         if (this.gethSD().compareTo(today) < 0) {
             return "hết hạn ";
         } else {
@@ -182,10 +166,10 @@ public class ThucPham {
     }
 
     public long thoiGianSuDung() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd");
-        // simpleDateFormat.format(dd);     
+        
+  
         if ((hSD.getTime() - nSX.getTime()) / (24 * 3600 * 1000) < 0)
-            return 0;
+            return 0 ;
         else{
         return (hSD.getTime() - nSX.getTime()) / (24 * 3600 * 1000);
         }
@@ -196,7 +180,7 @@ public class ThucPham {
     // thong tin san pham
     public void xuat() {
         // sử dung phương thức Locale để biến đổi theo tiền tệ việt nam
-        Locale localeVN = new Locale("vi", "VN");
+        // Locale localeVN = new Locale("vi", "VN");
         // NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
         // String str_dongia = numberFormat.format(donGia);
 
@@ -209,15 +193,9 @@ public class ThucPham {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String str1_nsx = simpleDateFormat.format(nSX);
         String str2_hsd = simpleDateFormat.format(hSD);
-        // return "Thông tin về thực phẩm: \n" + "Mã hàng : " + maHang + "\nTên hàng :
-        // '" + tenHang + "\nĐơn giá : " + str
-        // + "\nNgày sản xuất : " + str1 + "\nHạn sử dụng : " + str2;
-
-        // System.out.printf("\t thong tin san pham \n");
-        // System.out.printf("%-12s%-12s%-12s%-12s%-12s%-12s  \n", "maHang", "tenHang", "str_dongia", "str1_nsx", "str2_hsd ", "tinh trang");
 
         System.out.printf("%-12s%-12s%-12s%-12s%-12s%-12s%-20d  \n", maHang, tenHang, str_dongia, str1_nsx, str2_hsd, kiemTraHSD(), thoiGianSuDung());
-        // return "&-12s";
+
     }
 
     // nhap thon tin san pham
@@ -242,11 +220,19 @@ public class ThucPham {
             this.setHSD(scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
         } while (this.kiemTraNgay(th));
 
-        // arr_this.add(tp);
 
-        // System.out.println(this.toString());
-        // xuat();
-        // kiemTraHSD();
     }
+
+
+
+    //========================================================================
+    // quan lý file
+
+    
+    
+    
+    
+    
+    
 
 }

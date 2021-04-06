@@ -1,5 +1,5 @@
 
-import java.text.SimpleDateFormat;
+// import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,7 +38,7 @@ public class mainHangThucPham {
 
     public static void menu() {
         int chon;
-        ThucPham tp = new ThucPham();
+
         do {
             System.out.println("\n1.Nhập danh sách thuc pham");
             System.out.println("2.Xuất danh sách thuc pham");
