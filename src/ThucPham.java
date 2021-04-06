@@ -1,5 +1,10 @@
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 // import java.text.NumberFormat;
@@ -153,16 +158,16 @@ public class ThucPham {
     //     }
     // }
 
-    public String kiemTraHSD() {
+    public boolean kiemTraHSD() {
         Date today = new Date();
         today.getTime();
         // SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd - MM - yyyy");
         // String st = simpleDateFormat.format(today);
         if (this.gethSD().compareTo(today) < 0) {
-            return "hết hạn ";
+            return false;
         } else {
             // System.out.println("Hôm nay là ngày " + st + ", hàng hóa vẫn còn hạn ");
-            return "  còn hạn ";
+            return true;
 
         }
     }
@@ -181,10 +186,6 @@ public class ThucPham {
 
     // thong tin san pham
     public void xuat() {
-        // sử dung phương thức Locale để biến đổi theo tiền tệ việt nam
-        // Locale localeVN = new Locale("vi", "VN");
-        // NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
-        // String str_dongia = numberFormat.format(donGia);
 
 
         // String str_dongia = donGia.tostr
@@ -200,10 +201,7 @@ public class ThucPham {
 
     }
 
-    public String xuat2(){
-        return tp.gethSD().toString();
-
-    }
+   
 
     // nhap thon tin san pham
     public void nhap() {
@@ -236,7 +234,7 @@ public class ThucPham {
     // quan lý file
 
 
-    public void xuatFile(ThucPham tp){
+    public void xuatInfo_File(){
         try {
             
             //kiểu của file
@@ -244,7 +242,7 @@ public class ThucPham {
             //đường dẫn của file
             File dir = new File("./");
             //tao string name để nap vào  
-            String name = String.format("%s%s.%s",dir, tp.getTenHang(), ext);
+            String name = String.format("%s%s.%s",dir, this.getTenHang(), ext);
             FileWriter file = new FileWriter(name);
 
             // định dạng kiểu hiện thi cho double
@@ -257,26 +255,85 @@ public class ThucPham {
             String str1_nsx = simpleDateFormat.format(nSX);
             String str2_hsd = simpleDateFormat.format(hSD);
 
-
-            if(file.()){
                 System.out.println("thanh cong");
                 System.out.println("ten file dc tao" + name);
+                String return_col = String.format("%-12s%-12s%-12s%-12s%-12s%-12s%-17s  \n", "maHang", "tenHang", "str_dongia","str1_nsx", "str2_hsd ", "tinh trang", "thoi gian su dung(ngay)");
                 String return_tp = String.format("%-12s%-12s%-12s%-12s%-12s%-12s%-20d  \n", maHang, tenHang, str_dongia, str1_nsx, str2_hsd, kiemTraHSD(), thoiGianSuDung());
+                file.write(return_col);
                 file.write(return_tp);
-                System.out.println("thanh asdfasdf");
                 file.close();
-            // }
-            // else{
-                // System.out.println("da ton tai");
-                // String name = String.format("%s.%s", namefile, ext);
-                // File file = new File(dir, name);
-            // }
     
         } catch (Exception e) {
-            //TODO: handle exception
             e.printStackTrace();
-
         }
+    }
+    public void xuatFile_txt(String nameFile){
+        // try {
+        //     //Bước 1: Tạo đối tượng luồng và liên kết nguồn dữ liệu
+        //     FileOutputStream fos = new FileOutputStream("d:/Tuan_Khoi/SourceDemo/java/Lab22/HangThucPham/src/hello.txt");
+        //     DataOutputStream dos = new DataOutputStream(fos);
+        //     //Bước 2: Ghi dữ liệu
+        //     dos.writeInt(100);
+        //     dos.writeDouble(9.5);
+        //     dos.writeUTF("sdfasdfasdfsa");
+            
+        //     //Bước 3: Đóng luồng
+        //     fos.close();
+        //     dos.close();
+        //     System.out.println("Done!");
+        //    } catch (IOException ex) {
+        //      ex.printStackTrace();
+           
+        // }
+        String ext = "txt";
+        //đường dẫn của file
+        File dir = new File("./");
+        //tao string name để nap vào  
+        String name = String.format("%s%s.%s",dir, this.getTenHang(), ext);
+        // FileWriter file = new FileWriter(name);
+
+        // định dạng kiểu hiện thi cho double
+        BigDecimal str_dongia = BigDecimal.valueOf(donGia);
+        str_dongia = str_dongia.setScale(3, RoundingMode.DOWN);
+        // sử dụng phương thức SimpleDateFormx  at để biến đổi ngày tháng năm theo dạng
+        // "dd/MM/yyyy"
+        //định dạng kiểm hiện thi cho date
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String str1_nsx = simpleDateFormat.format(nSX);
+        String str2_hsd = simpleDateFormat.format(hSD);
+
+
+        BufferedWriter bw = null;
+		FileWriter fw = null;
+		try {
+            // String return_col = String.format("%-12s%-12s%-12s%-12s%-12s%-12s%-17s  \n", "maHang", "tenHang", "str_dongia","str1_nsx", "str2_hsd ", "tinh trang", "thoi gian su dung(ngay)");
+            String return_tp = String.format("%-12s%-12s%-12s%-12s%-12s%-12s%-20d  \n", maHang, tenHang, str_dongia, str1_nsx, str2_hsd, kiemTraHSD(), thoiGianSuDung());
+          
+            String FILENAME = String.format("%s.txt", nameFile);
+			File file = new File(FILENAME);
+
+			// kiểm tra nếu file chưa có thì tạo file mới
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			// true = append file
+			fw = new FileWriter(file.getAbsoluteFile(), true);
+			bw = new BufferedWriter(fw);
+			// bw.write(return_col);
+			bw.write(return_tp);
+			System.out.println("Xong");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (bw != null)
+					bw.close();
+				if (fw != null)
+					fw.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
     }
     
     
