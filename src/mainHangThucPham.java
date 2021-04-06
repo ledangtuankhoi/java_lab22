@@ -1,5 +1,6 @@
 
 // import java.text.SimpleDateFormat;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,10 +30,33 @@ public class mainHangThucPham {
         arr_tp.add(tp7);
         arr_tp.add(tp8);
 
-        // tp.nhap();
+        arr_tp.add(new ThucPham(1,"mot",12.7, 1,1,345,2,2,2354));
+        arr_tp.add(new ThucPham(1,"mot",12.7, 1,1,345,2,2,2354));
+
+        // ThucPham tp = new ThucPham(arr_tp());
+        // xuatFile()
+        System.out.println("nhap ten hang can xuat"  );
+        String tenhang ;
+
+        for (ThucPham string : arr_tp) {
+            do {
+                // tp.nhap();
+                tenhang = scanner.nextLine();
+                if (string.getTenHang().compareToIgnoreCase(tenhang)==0) {
+                    // String namefile = string.getTenHang();
+                    string.xuatFile(string);
+                }
+                else{
+                    System.out.println("khong co thuc pham");   
+                    break;
+                }
+            } while (string.getTenHang().compareToIgnoreCase(tenhang) != 0);
+        }
 
 
-        menu();
+        // ThucPham_file ds = new ThucPham_file();
+        // ds.xuatInfoSanPham();
+        // menu();
 
     }
 

@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 // import java.text.NumberFormat;
@@ -198,6 +200,11 @@ public class ThucPham {
 
     }
 
+    public String xuat2(){
+        return tp.gethSD().toString();
+
+    }
+
     // nhap thon tin san pham
     public void nhap() {
 
@@ -228,8 +235,49 @@ public class ThucPham {
     //========================================================================
     // quan lý file
 
+
+    public void xuatFile(ThucPham tp){
+        try {
+            
+            //kiểu của file
+            String ext = "txt";
+            //đường dẫn của file
+            File dir = new File("./");
+            //tao string name để nap vào  
+            String name = String.format("%s%s.%s",dir, tp.getTenHang(), ext);
+            FileWriter file = new FileWriter(name);
+
+            // định dạng kiểu hiện thi cho double
+            BigDecimal str_dongia = BigDecimal.valueOf(donGia);
+            str_dongia = str_dongia.setScale(3, RoundingMode.DOWN);
+            // sử dụng phương thức SimpleDateFormx  at để biến đổi ngày tháng năm theo dạng
+            // "dd/MM/yyyy"
+            //định dạng kiểm hiện thi cho date
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String str1_nsx = simpleDateFormat.format(nSX);
+            String str2_hsd = simpleDateFormat.format(hSD);
+
+
+            if(file.()){
+                System.out.println("thanh cong");
+                System.out.println("ten file dc tao" + name);
+                String return_tp = String.format("%-12s%-12s%-12s%-12s%-12s%-12s%-20d  \n", maHang, tenHang, str_dongia, str1_nsx, str2_hsd, kiemTraHSD(), thoiGianSuDung());
+                file.write(return_tp);
+                System.out.println("thanh asdfasdf");
+                file.close();
+            // }
+            // else{
+                // System.out.println("da ton tai");
+                // String name = String.format("%s.%s", namefile, ext);
+                // File file = new File(dir, name);
+            // }
     
-    
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+
+        }
+    }
     
     
     
