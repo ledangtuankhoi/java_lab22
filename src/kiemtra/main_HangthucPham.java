@@ -113,6 +113,8 @@ public class main_HangthucPham {
     static void xuatdanhsach() {
         int i = 1;
         for (HangThucPham d : arr_tp) {
+            System.out.printf("%-5s"," ");           
+            System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-17s  \n", "maHang", "tenHang", "str_dongia","str1_nsx", "str2_hsd ", "tinh trang", "thoi gian su dung(ngay)");
             System.out.printf("%-5d",i);           
             System.out.println(d.toString());
             // d.toString();
