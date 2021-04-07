@@ -25,6 +25,7 @@ public class HaiSan extends NongSan{
     
      public void nhaphnaghoa()
      {
+        super.setLoaiHang("hải sản");
          super.nhaphnaghoa();
          System.out.println("nhập loại hải sản: ");
          setLoaiHS(sc.nextLine());
