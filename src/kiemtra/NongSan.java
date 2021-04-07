@@ -10,6 +10,8 @@ package kiemtra;
  * @author ANH TUAN
  */
 public class NongSan extends HangThucPham{
+    
+    
     private String nguonGoc;
     private double nangLuong;
     private double khoangChat;
@@ -45,6 +47,7 @@ public class NongSan extends HangThucPham{
     @Override
     public void nhaphnaghoa()
     {
+        super.setLoaiHang("HS");
         super.nhaphnaghoa();
         System.out.println("nguồn gốc xuất xứ: ");
         setNguonGoc(sc.nextLine());

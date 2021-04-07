@@ -17,6 +17,9 @@ public class main_HangthucPham {
     static Scanner sc = new Scanner(System.in);
     static  ArrayList<HangThucPham> arr_tp = new ArrayList<HangThucPham>();
     public static void main(String[] args) {
+        // printf("%c", 219);		// print character █
+        // printf("%c", 176);		// print character ░
+        
        menu();    
     }
     public static void menu() {
@@ -74,11 +77,11 @@ public class main_HangthucPham {
         HangThucPham tp;
         do
         {   
-            System.out.println("1.Nông Sản");
-            System.out.println("2.Hải Sản");
+            System.out.print("1.Nông Sản \t");
+            System.out.print("2.Hải Sản \t");
 
 
-            System.out.println("0. thoat");
+            System.out.println("0. thoat \t");
             System.out.print("Hãy chọn:");           
             
 

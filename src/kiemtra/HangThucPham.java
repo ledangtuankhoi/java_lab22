@@ -185,21 +185,23 @@ abstract public class HangThucPham {
         int m=0;
         boolean kt = true;
         boolean th = true;
+        
         // System.out.println("nhập loai hàng: ");
         // setLoaiHang(sc.nextLine());
-        // do
-        // {
-        //     String parater = "[H,N]S([0-9])";
+        do
+        {
+            String parater = "[H|N]S[0-9]{2}";
             System.out.println("nhập mã hàng : ");
-        //     // System.out.println("(vd:HS0 -hải sản 0, NS0 -hải sản 0: ");
+            System.out.println("(vd:HS01 -hải sản 01, NS02 -hải sản 02: ");
             setMaHang(sc.nextLine());
-        //     if(!(this.getMaHang().matches(parater)))
-        //     {
-        //         System.out.println("bạn đã nhập sai mã hàng, nhập lại");
-        //         System.out.println("(vd:HS0 -hải sản 0, NS0 -hải sản 0: ");
-        //          m=1;
-        //     }
-        // }while(m==1);
+            if(!(this.getMaHang().matches(parater)))
+            {
+                System.out.println("bạn đã nhập sai mã hàng, nhập lại");
+                // System.out.println("(vd:HS0 -hải sản 0, NS0 -hải sản 0: ");
+                 m=1;
+            }else m = 0;
+
+        }while(m==1);
         
         do
         {
@@ -222,18 +224,12 @@ abstract public class HangThucPham {
     // ------------file
         public void xuatFile_txt(String nameFile){
 
-            // String ext = "txt";
-            //đường dẫn của file
-            // File dir = new File("./");
-            //tao string name để nap vào  
-            // String name = String.format("%s%s.%s",dir, this.getTenHang(), ext);
-            // FileWriter file = new FileWriter(name);
+
 
             // // định dạng kiểu hiện thi cho double
             BigDecimal str_dongia = BigDecimal.valueOf(donGia);
             str_dongia = str_dongia.setScale(3, RoundingMode.DOWN);
-            // // sử dụng phương thức SimpleDateFormx  at để biến đổi ngày tháng năm theo dạng
-            // // "dd/MM/yyyy"
+
             // //định dạng kiểm hiện thi cho date
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String str1_nsx = simpleDateFormat.format(nSX);
