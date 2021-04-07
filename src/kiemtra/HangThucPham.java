@@ -17,6 +17,7 @@ import java.util.Scanner;
 // import sun.util.calendar.CalendarDate;
 
 public class HangThucPham {
+    // private static final boolean Exception = false;
     // khai báo các thuộc tính cần thiết cho bài toán
     private String loaiHang;
     private String maHang;
@@ -29,7 +30,7 @@ public class HangThucPham {
     // khoi tạo các contruction
 
     public HangThucPham(String LoaiHang, String maHang, String tenHang, double donGia, double soLuong, Date nSX, Date hSD) {
-        this.loaiHang = loaiHang;
+        // this.loaiHang = loaiHang;
         this.maHang = maHang;
         this.tenHang = tenHang;
         this.donGia = donGia;
@@ -128,28 +129,109 @@ public class HangThucPham {
         SimpleDateFormat a = new SimpleDateFormat("dd/MM/yyyy");
         String strNgaySX = a.format(nSX);
         String strHanSD = a.format(hSD);
-
+        
         String checkHSD;
         if (kiemTraHSD() == true) {
             checkHSD = "còn hạn";
         } else {
             checkHSD = "    hêt hạn";
         }
-         return new Formatter().format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s  \n",this.loaiHang, this.maHang, this.tenHang, strDonGia, strNgaySX, strHanSD, checkHSD).toString();
-                
+        Formatter s = new Formatter();
+        s.format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s  \n",this.loaiHang, this.maHang, this.tenHang, strDonGia, strNgaySX, strHanSD, checkHSD).toString();
+        // return  new Formatter().format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s  \n",this.loaiHang, this.maHang, this.tenHang, strDonGia, strNgaySX, strHanSD, checkHSD).toString();
+        
+        return s.toString();
+        
     }
+    // nhap vao danh sach
+        public void nhaphnaghoa()
+        {
+            
+            int m=0;
+            boolean kt = true;
+            boolean th = true;
+            
+            // System.out.println("nhập loai hàng: ");
+            // setLoaiHang(sc.nextLine());
+            do
+            {
+                String parater = "[H|N]S[0-9]{2}";
+                System.out.println("nhập mã hàng : ");
+                System.out.println("(vd:HS01 -hải sản 01, NS02 -hải sản 02: ");
+                setMaHang(sc.nextLine());
+                if(!(this.getMaHang().matches(parater)))
+                {
+                    System.out.println("bạn đã nhập sai mã hàng, nhập lại");
+                    // System.out.println("(vd:HS0 -hải sản 0, NS0 -hải sản 0: ");
+                     m=1;
+                }else m = 0;
+    
+            }while(m==1);
+            
+            do
+            {
+                System.out.println("nhập tên hàng: ");
+                setTenHang(sc.nextLine());
+            }while(KiemTraTenHang(kt));
+            
+
+            
+     
+            boolean bError = true;
+            do {
+                // boolean bError;
+                try {
+                    System.out.println("Nhập đơn giá : ");
+                    setDonGia(Double.parseDouble(sc.nextLine()));
+                    bError = false;
+                    
+                } catch (Exception e) {
+                    System.out.println("\thãy nhập số! ");
+                   
+                }
+            } while (bError );
+
+            do {
+                try {
+                    System.out.println("Nhập số lượng : ");
+                    setSoLuong(Double.parseDouble(sc.nextLine()));
+    
+                } catch (Exception e) {
+                    //
+                    // e.printStackTrace();
+                    System.out.println("\t hãy nhập số! ");
+        
+                }
+                
+            } while (bError);        
+            
+            do
+            {
+                System.out.println("Nhập năm,tháng,ngày sản xuất : ");
+                setNSX(Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()));
+                System.out.println("nhập năm,tháng,ngày hết hạn : ");
+                setHSD(Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()));
+            } while (KiemTraNgay(th));
+            
+        }
+
+
     // phương thức nhập năm tháng ngày sản xUẤT
     public void setNSX(int nam, int thang, int ngay){
         Calendar lichNgaySX = Calendar.getInstance();
-        lichNgaySX.set(nam, thang+1 , ngay);
+        lichNgaySX.set(nam, thang - 1 , ngay);
         this.nSX=lichNgaySX.getTime();
     }
+
+
     // phương thức nhập hạn sử dụng
     public void setHSD(int nam, int thang, int ngay){
         Calendar lichHanSD = Calendar.getInstance();
-        lichHanSD.set(nam, thang+1, ngay);
+        lichHanSD.set(nam, thang - 1, ngay);
         this.hSD = lichHanSD.getTime();
     }
+
+
     // phương thức kiểm tra tên hàng trống không
     public boolean KiemTraTenHang(boolean k)
     {
@@ -159,6 +241,8 @@ public class HangThucPham {
             k=false;
         return k;
     }
+
+
     //khởi tạo hàm kiểm tra ngày hết hạn không được nhỏ hơn ngày sản xuất
     public boolean KiemTraNgay(boolean t){
         if(this.getnSX().compareTo(this.gethSD())<0)
@@ -167,6 +251,17 @@ public class HangThucPham {
             System.out.println("ngày hết hạn lớn hơn ngày sản xuất");
         return t;
     }
+
+    // phương thức kiểm tra don giá
+    public boolean KiemtraDonGia(boolean t){
+        if(this.donGia < 0){
+            System.out.println("don gia khong duoc nho hon 0 ");
+            t = false;
+        }
+        return t;
+    }
+
+
     //khởi tạo phương thức kiểm tra hạn sử dụng của sản phẩm đã hết hạn hay còn hạn
     public boolean kiemTraHSD() {
         Date today = new Date();
@@ -182,49 +277,6 @@ public class HangThucPham {
         }
     }
 
-// nhap vao danh sach
-    public void nhaphnaghoa()
-    {
-        
-        int m=0;
-        boolean kt = true;
-        boolean th = true;
-        
-        // System.out.println("nhập loai hàng: ");
-        // setLoaiHang(sc.nextLine());
-        do
-        {
-            String parater = "[H|N]S[0-9]{2}";
-            System.out.println("nhập mã hàng : ");
-            System.out.println("(vd:HS01 -hải sản 01, NS02 -hải sản 02: ");
-            setMaHang(sc.nextLine());
-            if(!(this.getMaHang().matches(parater)))
-            {
-                System.out.println("bạn đã nhập sai mã hàng, nhập lại");
-                // System.out.println("(vd:HS0 -hải sản 0, NS0 -hải sản 0: ");
-                 m=1;
-            }else m = 0;
-
-        }while(m==1);
-        
-        do
-        {
-            System.out.println("nhập tên hàng: ");
-            setTenHang(sc.nextLine());
-        }while(KiemTraTenHang(kt));
-        System.out.println("Nhập đơn giá : ");
-        setDonGia(Double.parseDouble(sc.nextLine()));
-        System.out.println("Nhập số lượng : ");
-        setSoLuong(Double.parseDouble(sc.nextLine()));
-        do
-        {
-            System.out.println("Nhập năm,tháng,ngày sản xuất : ");
-            setNSX(Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()));
-            System.out.println("nhập năm,tháng,ngày hết hạn : ");
-            setHSD(Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()));
-        } while (KiemTraNgay(th));
-        
-    }
     // ------------file
         public void xuatFile_txt(String nameFile){
 

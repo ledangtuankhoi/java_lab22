@@ -1,6 +1,9 @@
 package kiemtra;
 
 
+// import java.io.FileInputStream;
+// import java.io.FileNotFoundException;
+// import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,15 +19,14 @@ public class main_HangthucPham{
 
     public static void main(String[] args) {
         HangThucPham tp = new HangThucPham("nông sản","1", "mot", 12.7, 1, 1, 345, 2, 2, 2354);
-        HangThucPham tp8 = new HangThucPham("nông sản","46", "tam", 34.2, 1, 1, 3456, 2, 2, 2345);
+        HangThucPham tp8 = new HangThucPham("nông sản","46", "tam", 34.2, 1, 12, 3456, 2, 2, 2345);
         HangThucPham tp7 = new HangThucPham("nông sản","4561", "bay", 454.2, 1, 1, 346, 2, 2, 2345);
         HangThucPham tp6 = new HangThucPham("hải sản","45", "sau", 2345.2, 1, 1, 3456, 2, 2, 235);
-        HangThucPham tp5 = new HangThucPham("hải sản","4561", "nam", 456.2, 1, 1, 3456, 2, 2, 534);
-        HangThucPham tp4 = new HangThucPham("nông sản","461", "bon", 345.2, 1, 1, 346, 2, 2, 3452);
-        HangThucPham tp3 = new HangThucPham("nông sản","51", "ba", 67.2, 1, 1, 3456, 2, 2, 456);
-        HangThucPham tp1 = new HangThucPham("hải sản","61", "mot", 346.2, 1, 1, 346, 2, 2, 123);
+        HangThucPham tp5 = new HangThucPham("hải sản","4561", "nam", 456.2, 12, 1, 3456, 2, 2, 534);
+        HangThucPham tp4 = new HangThucPham("nông sản","461", "bon", 345.2, 1, 1, 346, 12, 2, 3452);
+        HangThucPham tp3 = new HangThucPham("nông sản","51", "ba", 67.2, 1, 12, 3456, 2, 2, 456);
+        HangThucPham tp1 = new HangThucPham("hải sản","61", "mot", 346.2, 12, 1, 346, 2, 2, 123);
         HangThucPham tp2 = new HangThucPham("hải sản","61", "hai", 3456.2, 1, 1, 3645, 2, 2, 345);
-
         arr_tp.add(tp);
         arr_tp.add(tp1);
         arr_tp.add(tp2);
@@ -34,8 +36,10 @@ public class main_HangthucPham{
         arr_tp.add(tp6);
         arr_tp.add(tp7);
         arr_tp.add(tp8);
-        
+
        menu();    
+
+
     }
 
 
@@ -135,8 +139,8 @@ public class main_HangthucPham{
     //-----------xuat
     static void xuatdanhsach() {
         int i = 1;
-        System.out.printf("%-5s"," ");           
-        System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-17s  \n", "maHang", "tenHang", "str_dongia","str1_nsx", "str2_hsd ", "tinh trang", "thoi gian su dung(ngay)");
+        System.out.printf("%-5s","STT");           
+        System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-17s  \n\n", "Loại","Mã hàng", "Tên hàng", "Đơn giá","ngày SX", "Ngày SD ", "tinh trang");
         for (HangThucPham d : arr_tp) {
             System.out.printf("%-5d",i);           
             System.out.println(d.toString());
@@ -151,7 +155,7 @@ public class main_HangthucPham{
     static void xoa()
     {
         int chon;
-        HangThucPham tp;
+        // HangThucPham tp;
         do
         {   
             System.out.println("1.xóa theo tên");
@@ -222,7 +226,7 @@ public class main_HangthucPham{
     static void sua()
     {
         int chon;
-        HangThucPham tp;
+        // HangThucPham tp;
         do
         {   
             System.out.println("1.sửa theo tên");
@@ -280,7 +284,7 @@ public class main_HangthucPham{
 static void timkiem()
     {
         int chon;
-        HangThucPham tp;
+        // HangThucPham tp;
         do
         {   
             System.out.println("1.tiem kiem theo tên");
@@ -340,7 +344,7 @@ static void timkiem()
 static void sapxep()
     {
         int chon;
-        HangThucPham tp;
+        // HangThucPham tp;
         do
         {   
             System.out.println("1.sắp xếp theo tên");
