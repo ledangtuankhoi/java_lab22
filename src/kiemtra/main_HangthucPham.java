@@ -401,7 +401,7 @@ static void sapxep()
                 case 1:
                     for(HangThucPham s : arr_tp)
                     {
-                        if(s.getLoaiHang().equalsIgnoreCase("nông sản"))
+                        if(s.getLoaiHang().equalsIgnoreCase("NS"))
                             d++;
                     }
                     System.out.println("số lượng nông sản: "+d);
