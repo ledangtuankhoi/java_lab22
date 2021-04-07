@@ -1,27 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package kiemtra;
 
-/**
- *
- * @author ANH TUAN
- */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
-public class main_HangthucPham {
+public class main_HangthucPham{
     static Scanner sc = new Scanner(System.in);
     static  ArrayList<HangThucPham> arr_tp = new ArrayList<HangThucPham>();
+
+
+
+
+
+
     public static void main(String[] args) {
-        // printf("%c", 219);		// print character █
-        // printf("%c", 176);		// print character ░
+        HangThucPham tp = new HangThucPham("nông sản","1", "mot", 12.7, 1, 1, 345, 2, 2, 2354);
+        HangThucPham tp8 = new HangThucPham("nông sản","46", "tam", 34.2, 1, 1, 3456, 2, 2, 2345);
+        HangThucPham tp7 = new HangThucPham("nông sản","4561", "bay", 454.2, 1, 1, 346, 2, 2, 2345);
+        HangThucPham tp6 = new HangThucPham("hải sản","45", "sau", 2345.2, 1, 1, 3456, 2, 2, 235);
+        HangThucPham tp5 = new HangThucPham("hải sản","4561", "nam", 456.2, 1, 1, 3456, 2, 2, 534);
+        HangThucPham tp4 = new HangThucPham("nông sản","461", "bon", 345.2, 1, 1, 346, 2, 2, 3452);
+        HangThucPham tp3 = new HangThucPham("nông sản","51", "ba", 67.2, 1, 1, 3456, 2, 2, 456);
+        HangThucPham tp1 = new HangThucPham("hải sản","61", "mot", 346.2, 1, 1, 346, 2, 2, 123);
+        HangThucPham tp2 = new HangThucPham("hải sản","61", "hai", 3456.2, 1, 1, 3645, 2, 2, 345);
+
+        arr_tp.add(tp);
+        arr_tp.add(tp1);
+        arr_tp.add(tp2);
+        arr_tp.add(tp3);
+        arr_tp.add(tp4);
+        arr_tp.add(tp5);
+        arr_tp.add(tp6);
+        arr_tp.add(tp7);
+        arr_tp.add(tp8);
         
        menu();    
     }
+
+
+
+
+
+
+
+
     public static void menu() {
         int chon;
         do {
@@ -112,9 +135,9 @@ public class main_HangthucPham {
     //-----------xuat
     static void xuatdanhsach() {
         int i = 1;
+        System.out.printf("%-5s"," ");           
+        System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-17s  \n", "maHang", "tenHang", "str_dongia","str1_nsx", "str2_hsd ", "tinh trang", "thoi gian su dung(ngay)");
         for (HangThucPham d : arr_tp) {
-            System.out.printf("%-5s"," ");           
-            System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-17s  \n", "maHang", "tenHang", "str_dongia","str1_nsx", "str2_hsd ", "tinh trang", "thoi gian su dung(ngay)");
             System.out.printf("%-5d",i);           
             System.out.println(d.toString());
             // d.toString();
@@ -363,6 +386,7 @@ static void sapxep()
                 }
             };
             Collections.sort(arr_tp,comp);
+            xuatdanhsach();
         }
 
         static void SapxeptheoGia(){
@@ -398,23 +422,37 @@ static void sapxep()
             System.out.print("Hãy chọn:");
             c = Integer.parseInt(sc.nextLine());
             switch (c) {
+                case 0:
+                    c = 0;
+                    break;
                 case 1:
                     for(HangThucPham s : arr_tp)
                     {
-                        if(s.getLoaiHang().equalsIgnoreCase("NS"))
+                        if(s.getLoaiHang().equalsIgnoreCase("nông sản"))
+                        {
                             d++;
+                            System.out.println(s.toString());
+                        }
                     }
-                    System.out.println("số lượng nông sản: "+d);
+                    
+                    System.out.println("\nsố lượng nông sản: "+d);
                     break;
                 case 2:
                     
                     for(HangThucPham s : arr_tp)
                     {
                         if(s.getLoaiHang().equalsIgnoreCase("hải sản"))
+                        {
                             d++;
+                            System.out.println(s.toString());
+                        }
                     }
                     System.out.println("số lượng hải sản: "+d);
                     break;
+            }
+            if(c != 0){
+                System.out.print("Nữa ko? Nữa (1)/ Không(0), hãy chọn số:");
+                c = Integer.parseInt(sc.nextLine());
             }
             
      }

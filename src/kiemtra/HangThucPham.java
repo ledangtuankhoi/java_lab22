@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package kiemtra;
 
 import java.io.BufferedWriter;
@@ -20,11 +16,7 @@ import java.util.Locale;
 import java.util.Scanner;
 // import sun.util.calendar.CalendarDate;
 
-/**
- *
- * @author ANH TUAN
- */
-abstract public class HangThucPham {
+public class HangThucPham {
     // khai báo các thuộc tính cần thiết cho bài toán
     private String loaiHang;
     private String maHang;
@@ -36,7 +28,7 @@ abstract public class HangThucPham {
     Scanner sc = new Scanner(System.in);
     // khoi tạo các contruction
 
-    public HangThucPham(String loaiHang, String maHang, String tenHang, double donGia, double soLuong, Date nSX, Date hSD) {
+    public HangThucPham(String LoaiHang, String maHang, String tenHang, double donGia, double soLuong, Date nSX, Date hSD) {
         this.loaiHang = loaiHang;
         this.maHang = maHang;
         this.tenHang = tenHang;
@@ -44,6 +36,18 @@ abstract public class HangThucPham {
         this.soLuong = soLuong;
         this.nSX = nSX;
         this.hSD = hSD;
+    }
+
+    public HangThucPham(String loaihang, String i, String tenHang, double donGia, int ngay_nsx, int thang_nsx, int nam_nsx, int ngay_hsd, int thang_hsd, int nam_hsd) {
+        this.loaiHang = loaihang;
+        this.maHang = i;
+        this.tenHang = tenHang;
+        this.donGia = donGia;
+        setNSX(nam_nsx, thang_nsx, ngay_nsx);
+        this.nSX = getnSX();
+        setHSD(nam_hsd, thang_hsd, ngay_hsd);
+        this.hSD =gethSD();
+        // this.hSD = hSD;
     }
 
     public double getSoLuong() {
@@ -131,7 +135,7 @@ abstract public class HangThucPham {
         } else {
             checkHSD = "    hêt hạn";
         }
-         return new Formatter().format("%-12s%-12s%-12s%-12s%-12s%-12s  \n", maHang, tenHang, strDonGia, strNgaySX, strHanSD, checkHSD).toString();
+         return new Formatter().format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s  \n",this.loaiHang, this.maHang, this.tenHang, strDonGia, strNgaySX, strHanSD, checkHSD).toString();
                 
     }
     // phương thức nhập năm tháng ngày sản xUẤT

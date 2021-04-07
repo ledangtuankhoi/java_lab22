@@ -47,7 +47,7 @@ public class NongSan extends HangThucPham{
     @Override
     public void nhaphnaghoa()
     {
-        super.setLoaiHang("HS");
+        super.setLoaiHang("nông sản");
         super.nhaphnaghoa();
         System.out.println("nguồn gốc xuất xứ: ");
         setNguonGoc(sc.nextLine());
