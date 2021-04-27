@@ -37,6 +37,11 @@ public class main_HangthucPham{
         arr_tp.add(tp7);
         arr_tp.add(tp8);
 
+
+        // System.out.println(String.valueOf(6));
+        // System.out.println("0" + String.valueOf(6));
+
+
        menu();    
 
 
@@ -229,6 +234,7 @@ public class main_HangthucPham{
         // HangThucPham tp;
         do
         {   
+            xuatdanhsach();
             System.out.println("1.sửa theo tên");
             // System.out.println("2.xóa theo vị trí");
             // System.out.println("2.Hải Sản");
